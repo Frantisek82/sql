@@ -50,6 +50,9 @@ mysql -u usuario -p clinica_veterinaria < mascotas.sql
 -- eliminar tabla
 drop table mascotas;
 
+-- eliminar todas las filas de la tabla existente
+truncate mascotas;
+
 -- restaurar copia de seguridad desde CLI de MySQL
 source mascotas.sql;
 
@@ -86,4 +89,10 @@ alter table especies change id id_mascota mediumint not null auto_increment;
 (alter table especies change id_mascota id_mascota mediumint not null;)
 alter table especies drop primary key, add primary key (nombre);
 
---
+-- cambiar char(30) a char(255) para nombre en la tabla
+alter table mascotas change nombre nombre char(255) not null;
+
+-- obtener info from the tabla
+select tipo, nombre, edad from mascotas where tipo = "mamifero" order by edad
+desc;
+select count(*) from mascotas where tipo = "mamifero";
