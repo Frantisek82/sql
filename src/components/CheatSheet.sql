@@ -96,3 +96,34 @@ alter table mascotas change nombre nombre char(255) not null;
 select tipo, nombre, edad from mascotas where tipo = "mamifero" order by edad
 desc;
 select count(*) from mascotas where tipo = "mamifero";
+select tipo, edad from mascotas where tipo != "mamifero" and edad > 20 order by edad asc;
+
+-- select avarage age of "ave" from mascotas
+select avg(edad) from mascotas where tipo like "ave";
+
+-- round selected number of the result
+select round(avg(edad)) from mascotas where tipo like "ave";
+
+-- display name and age of particular name from the table
+select nombre, edad from mascotas where nombre = "Orca";
+
+-- change age of the particular name
+update mascotas set edad = 3 where nombre = "Orca";
+
+-- elimina los registros de una tabla sin eliminar los espacios asignados
+delete from mascotas where edad > 50;
+
+-- convert entire MySQL database character-set to UTF-8 and collation to UTF-8
+alter table propietarios_mascotas engine=InnoDB charset=utf8 collate=utf8_gener
+al_ci;
+
+-- Crear la tabla propietarios_mascotas con las columnas propietario_id y mascota_id donde ambas columnas serán claves foráneas y la clave primaria, estará formada por ambas columnas (todos tienen que tener minimo una mascota)
+
+create table propietarios_mascotas (
+    propietario_id mediumint not null,
+    mascota_id mediumint not null,
+    primary key (propietario_id, mascota_id),
+    foreign key (propietario_id) references propietarios (id),
+    foreign key (mascota_id) references mascotas (id)
+    on delete cascade on update cascade
+);
