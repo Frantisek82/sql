@@ -127,3 +127,25 @@ create table propietarios_mascotas (
     foreign key (mascota_id) references mascotas (id)
     on delete cascade on update cascade
 );
+
+-- Crar la tabla books in database library
+
+CREATE TABLE Library.books (
+     id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT, 
+     title VARCHAR(255) NOT NULL, 
+     price DOUBLE NOT NULL, 
+     publisher VARCHAR(255) NOT NULL, 
+     pages SMALLINT NOT NULL, 
+     author VARCHAR(255) NOT NULL, 
+     PRIMARY KEY (id)
+);
+
+CREATE TABLE 
+    books (
+        id mediumint, 
+        title varchar(255), 
+        price double, 
+        publisher varchar(255), 
+        pages smallint, 
+        author varchar(255), 
+    );
